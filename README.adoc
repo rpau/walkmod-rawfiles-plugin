@@ -1,0 +1,51 @@
+walkmod-rawfiles-plugin
+=======================
+
+Walkmod plugin to process raw files (without parsing).
+
+== Usage 
+
+Specifically, this plugin allows to work with the string content of a file. Specifically, it has been designed to rewrite files for an 
+specific platform (e.g unix, mac or windows) and thus, work with an specific an endline char (\n, \r or \r\n).
+
+
+In order to use this plugin from a project where you would like to run walkmod, you just need to add:
+
+
+1) The plugin declaration
+
+```XML
+<!DOCTYPE walkmod PUBLIC "-//WALKMOD//DTD"  "http://www.walkmod.com/dtd/walkmod-1.1.dtd" >
+<walkmod>
+  <plugins>
+    <plugin groupId="org.walkmod" artifactId="walkmod-rawfiles-plugin" version="[1.0, )" />
+  </plugins>
+  ...
+</walkmod>
+```
+
+2) The configuration provider specifying your classpath (the project .classes and the dependencies)
+
+```XML
+<!DOCTYPE walkmod PUBLIC "-//WALKMOD//DTD"  "http://www.walkmod.com/dtd/walkmod-1.1.dtd" >
+<walkmod>
+  ...
+  <chain name="rawfiles">
+    <reader path="src/main/java"/>
+    <walker type="rawfiles:walker" />
+    <writer type="rawfiles:writer" path="src/main/java">
+       <param name="platform">unix</param>
+    </writer>
+    </writer>  
+  </chain>
+  ...
+</walkmod>
+```
+
+== Contributing
+
+If you want to hack on this, fork it, improve it and send me a pull request.
+
+To get started using it, just clone it and call mvn install. 
+
+
